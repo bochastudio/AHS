@@ -1,0 +1,416 @@
+<!dictype html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="american horror story, series, serie, ahs, asylum, murder house, freak show, coven, hotel, horror, terror, series online, gratis, ahs registrarse, tienda, productos ahs, american horror story pagina oficial">    
+    <title>AHS: Hotel</title>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="sestilo5.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <script src="http://code.jquety.com/jquery-lastest.js"></script>
+    <script src="js/jquery.js"></script>
+    <script>
+      $(document).on('ready', function()
+                            	{
+                            
+                            		$('a[href*=#]').on('click', function() 
+                            		{
+                            
+                            			var target = $(this.hash);
+                            			
+                            
+                            			if (target.length!=0) 
+                            				{
+                            
+                            					var distancia = target.offset().top;
+                            					
+                            
+                            					$('html,body').animate({scrollTop: distancia}, 2000);
+                            					
+                            	
+                            					return false;
+                            					
+                            		
+                            				}
+                            		});
+                            	});
+                                
+                            
+                            
+                            	window.onload = function(){
+                            		
+                            	
+                            		var medio = document.getElementById('medio');
+                            		
+                            		var reproducir = document.getElementById('reproducir');
+                            		
+                            		var parar = document.getElementById('parar');
+                            		
+                            		var barra = document.getElementById('barra');
+                            		
+                            		var maximo = 430;
+                            		
+                            		var progreso = document.getElementById('progreso');
+                            		
+                            		var mas = document.getElementById('mas');
+                            		var menos = document.getElementById('menos');
+                            		var mute = document.getElementById('mute');
+                            	
+                            		var volumen = 10;
+                            		
+                            	
+                            		reproducir.onclick = function(){
+                            			
+                            			if(!medio.paused && !medio.ended){
+                            				
+                            				medio.pause();
+                            				
+                            				reproducir.src='img/play_btn.png';
+                            				
+                            				window.clearInterval(bucle);
+                            			}else{
+                            				
+                            				medio.play();
+                            			
+                            				reproducir.src='img/pause_btn.png';
+                            				
+                            				bucle = setInterval(estado, 10);
+                            			}
+                            		}
+                            		
+                            		
+                            		parar.onclick = function(){
+                            	
+                            			medio.pause();
+                            			
+                            			medio.currentTime = 0; 
+                            			
+                            			reproducir.src='img/play_btn.png';
+                            			
+                            			estado();
+                            		}
+                            		
+                            		
+                            		barra.onclick = function(e){
+                            		
+                            			if(!medio.paused && !medio.ended){
+                            			
+                            				var mouseX = e.pageX-barra.offsetLeft;
+                            			
+                            				var nuevoTiempo = mouseX * medio.duration / maximo;
+                            			
+                            				medio.currentTime = nuevoTiempo;
+                            				
+                            				progreso.style.width = mouseX + 'px';
+                            			}else{
+                            				
+                            				medio.play();
+                            				reproducir.src='img/pause_btn.png';
+                            				bucle = setInterval(estado, 10);
+                            				var mouseX = e.pageX-barra.offsetLeft;
+                            				var nuevoTiempo = mouseX * medio.duration / maximo;
+                            				medio.currentTime = nuevoTiempo;
+                            				progreso.style.width = mouseX + 'px';
+                            			}
+                            		}
+                            		
+                            		
+                            		mas.onclick = function(){
+                            			if (volumen < 10){
+                            				
+                            				volumen ++;
+                            				
+                            				medio.volume = volumen/10;
+                            			}
+                            		}
+                            		
+                            		
+                            		menos.onclick = function(){
+                            			if (volumen > 0){
+                            			
+                            				volumen --;
+                            				medio.volume = volumen/10;
+                            			}
+                            		}
+                            		
+                            		
+                            		mute.onclick = function(){
+                            			
+                            			medio.volume = 0;
+                            			volumen = 0;
+                            		}
+                            		
+                            	
+                            		function estado(){
+                            			
+                            			if(!medio.ended){
+                            				
+                            				var total = parseInt(medio.currentTime*maximo/medio.duration);
+                            				
+                            				progreso.style.width = total+'px';
+                            			}else{
+                            			
+                            				progreso.style.width='0px';
+                            				
+                            				reproducir.src='img/play_btn.png';
+                            				
+                            				window.clearInterval(bucle);
+                            			}
+                            		}
+                            	}
+                            function MM_swapImgRestore() { //v3.0
+                              var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+                            }
+                            function MM_preloadImages() { //v3.0
+                              var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+                                var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+                                if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+                            }
+                            
+                            function MM_findObj(n, d) { //v4.01
+                              var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+                                d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+                              if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+                              for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+                              if(!x && d.getElementById) x=d.getElementById(n); return x;
+                            }
+                            
+                            function MM_swapImage() { //v3.0
+                              var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+                               if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+                            }
+    </script>
+  </head><body>
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html"><span>AHS</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Temporadas <i class="fa et-down fa-angle-down"></i></a>
+              <ul class="dropdown-menu" role="menu">
+                <li>
+                  <a href="s1.html">Murder House</a>
+                </li>
+                <li>
+                  <a href="s2.html">Asylum</a>
+                </li>
+                <li>
+                  <a href="s3.html">Coven</a>
+                </li>
+                <li>
+                  <a href="s4.html">Freak Show</a>
+                </li>
+                <li>
+                  <a href="s5.html">Hotel</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#sinopsis">Sinopsis</a>
+            </li>
+            <li>
+              <a href="#personajes">Personajes</a>
+            </li>
+            <li>
+              <a href="#epi">Episodios</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <video id="video" loop="" autoplay="" preload="" muted="" class="hidden-sm hidden-xs">
+      <source src="videos/hotel.mp4" type="video/mp4">
+    </video>
+    <div class="section" id="sinopsis">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="img\pc\hotelgal.jpg" class="img-responsive">
+          </div>
+          <div class="col-md-6">
+            <h1>Hotel</h1>
+            <h3>Sinopsis</h3>
+            <p>La historia se centra en el hotel Cortéz en el 2015, en Los Angeles, que
+              ha sido adquirida por un diseñador de moda de Nueva York, Will Drake (Cheyenne
+              Jackson). El hotel está repleto de demonios y fantasmas que incluyen al
+              fundador del mismo, James Patrick March (Evan Peters) y la fantasma adicta
+              a la heroína Sally (Sarah Paulson).
+              <br>
+              <br>El personal y los residentes del hotel incluyen a la vampiro de 111 años
+              de edad, Elizabeth / La condesa (Lady Gaga), y a su amante fugaz, y ex-drogadicto,
+              Donovan (Matt Bomer), así como la madre de Donovan, la gerente y recepcionista
+              iris (Kathy Bates), el camarero transexual Liz Taylor (Denis O'Hare) y
+              la ex amante de La Condesa, quien está en búsqueda de venganza, Ramona
+              Royale (Angela Bassett).
+              <br>
+              <br>&nbsp;Las historias dentro del Hotel se tejen con la presencia del detective
+              John Lowe (Wes Bentley), quien investiga una serie de asesinatos cometido
+              por un asesino en serie, donde se dará cuenta que un problema del pasado
+              con su esposa Alex (Chloë Sevigny), tiene conexión directa con La Condesa
+              y con el hotel Cortez.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="personajes">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="text-center">Personajes</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="episodios">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="img\personajes\s5\elizabeth6.jpg" class="img-responsive">
+            <h2>La Condesa Elizabeth</h2>
+            <p>La dueña del Hotel Cortez.</p>
+          </div>
+          <div class="col-md-4">
+            <img src="img\personajes\s5\sally mc2.jpg" class="img-responsive">
+            <h2>Sally McKenna</h2>
+            <p>Enemiga de Iris y residente del Hotel.</p>
+          </div>
+          <div class="col-md-4">
+            <img src="img\personajes\s5\iris1.jpg" class="img-responsive">
+            <h2>Iris</h2>
+            <p>La gerente del Hotel.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <img src="img\personajes\s5\donovan4.jpg" class="img-responsive">
+            <h2>Donovan</h2>
+            <p>Hijo de Iris.</p>
+          </div>
+          <div class="col-md-4">
+            <img src="img\personajes\s5\tamona7.jpg" class="img-responsive">
+            <h2>Ramona Royale</h2>
+            <p>Una actriz.</p>
+          </div>
+          <div class="col-md-4">
+            <img src="img\personajes\s5\nick pryor9.jpg" class="img-responsive">
+            <h2>Liz Taylor</h2>
+            <p>Una empleada del hotel.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <img src="img\personajes\s5\john lowe5.jpg" class="img-responsive">
+            <h2>John Lowe</h2>
+            <p>Un detective que investigará una serie de homicidios que sucederán en
+              el hotel.</p>
+          </div>
+          <div class="col-md-4">
+            <img src="img\personajes\s5\Will Drake8.jpg" class="img-responsive">
+            <h2>Will Drake</h2>
+            <p>Un ícono de la moda.</p>
+          </div>
+          <div class="col-md-4">
+            <img src="img\personajes\s5\james patrick3.jpg" class="img-responsive">
+            <h2>James Patrick March</h2>
+            <p>Primer dueño y creador del Hotel.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="epi">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="text-center">No te pierdas de nada</h1>
+            <p class="text-center lead">Mirá los últimos episodios</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <a href="https://www.youtube.com/watch?v=-9KZr2Vn7CQ">
+              <img src="img\episodios\s5\capitulo1.jpg" class="img-responsive"></a>
+            <h2>Checking In</h2>
+          </div>
+          <div class="col-md-3">
+            <img src="img\episodios\s5\capitulo2.jpg" class="img-responsive">
+            <h2>Chutes and Ladders</h2>
+          </div>
+          <div class="col-md-3">
+            <img src="img\episodios\s5\capitulo3.jpg" class="img-responsive">
+            <h2>Mommy</h2>
+          </div>
+          <div class="col-md-3">
+            <img src="img\episodios\s5\capitulo4.jpg" class="img-responsive">
+            <h2>Devil Night's</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <img src="img\episodios\s5\capitulo5.jpg" class="img-responsive">
+            <h2>Room Service</h2>
+          </div>
+          <div class="col-md-3">
+            <img src="img\episodios\s5\capitulo6.jpg" class="img-responsive">
+            <h2>Room 33</h2>
+          </div>
+          <div class="col-md-3">
+            <img src="img\episodios\s5\capitulo7.png" class="img-responsive">
+            <h2>Flicker</h2>
+          </div>
+          <div class="col-md-3">
+            <img src="img\episodios\s5\capitulo8.png" class="img-responsive">
+            <h2>The Ten Commandments Killer</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <img src="img\episodios\s5\capitulo9.jpg" class="img-responsive">
+            <h2>She Wants Revenge</h2>
+          </div>
+          <div class="col-md-3">
+            <img src="img\episodios\s5\capitulo10.jpg" class="img-responsive">
+            <h2>She Gets Revenge</h2>
+          </div>
+          <div class="col-md-3">
+            <img src="img\episodios\s5\capitulo11.jpg" class="img-responsive">
+            <h2>Battle Royale</h2>
+          </div>
+          <div class="col-md-3">
+            <img src="img\episodios\s5\capitulo12.jpg" class="img-responsive">
+            <h2>Be Our Guest</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="section section-primary">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <h1>American Horror Story</h1>
+            <p>DMM3A
+              <br>Mariana Fernandez&nbsp;
+              <br>Victoria García Tori
+              <br>Leonardo Rosas</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  
+
+</body></html>
